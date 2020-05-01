@@ -74,7 +74,7 @@ async fn main() {
                         || req.uri().path() == "/index.html" && req.method() == Method::GET
                     {
                         info!("serving example index HTML to {}", remote_addr);
-                        Response::builder().body(Body::from(include_str!("./echo_server.html")))
+                        Response::builder().body(Body::from(include_str!("../../client/client.html")))
                     } else if req.uri().path() == "/new_rtc_session" && req.method() == Method::POST
                     {
                         info!("WebRTC session request from {}", remote_addr);
