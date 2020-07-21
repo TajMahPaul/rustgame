@@ -1,4 +1,7 @@
-// Import our outputted wasm ES6 module
-// Which, export default's, an initialization function
-// import('./pkg')
-//   .catch(console.error);
+import init, {intro} from "./pkg/client.js"
+async function run(){
+  await init();
+  intro();
+}
+
+run();

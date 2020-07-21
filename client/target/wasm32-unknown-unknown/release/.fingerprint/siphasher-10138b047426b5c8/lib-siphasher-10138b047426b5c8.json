@@ -1,0 +1,1 @@
+{"rustc":17444072189324216992,"features":"[\"default\", \"std\"]","target":15912842663437263897,"profile":2574335274271406459,"path":6603956043438717958,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"wasm32-unknown-unknown/release/.fingerprint/siphasher-10138b047426b5c8/dep-lib-siphasher-10138b047426b5c8"}}],"rustflags":[],"metadata":3476056102545690687}

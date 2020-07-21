@@ -3,19 +3,34 @@
 
 use wasm_bindgen::prelude::*;
 use wasm_bindgen::JsCast;
+use console_error_panic_hook;
 
-// Our Add function
-// wasm-pack requires "exported" functions
-// to include #[wasm_bindgen]
-#[wasm_bindgen(start)]
-pub fn start() -> Result<(), JsValue> {
-    let document = web_sys::window().unwrap().document().unwrap();
-    let body = document.body().expect("document should have a body");
-    let image = document
-        .create_element("image")?
-        .dyn_into::<web_sys::HtmlImageElement>()?;
-    body.append_child(&image)?;
-    image.set_src("./assets/intro_text_animation.png");
+
+#[wasm_bindgen]
+pub fn intro() {
+    console_error_panic_hook::set_once();
+    let window = web_sys::window().unwrap();
+    let document = window.document().unwrap();
+    let canvas = document.get_element_by_id("canvas").unwrap();
+    let canvas: web_sys::HtmlCanvasElement = canvas
+        .dyn_into::<web_sys::HtmlCanvasElement>()
+        .map_err(|_| ())
+        .unwrap();
+
+    let intro_img = document.get_element_by_id("intro").unwrap();
+    let intro_img : web_sys::HtmlImageElement = intro_img
+    .dyn_into::<web_sys::HtmlImageElement>()
+    .map_err(|_| ())
+    .unwrap();
+
+    let context = canvas
+        .get_context("2d")
+        .unwrap()
+        .unwrap()
+        .dyn_into::<web_sys::CanvasRenderingContext2d>()
+        .unwrap();
+
+    context.draw_image_with_html_image_element(&intro_img, 173.0, 24.0).unwrap();
+ 
     
-    Ok(())
 }
